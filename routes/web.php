@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\IndexController;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/admin/index', [IndexController::class, 'index']);
+
+Route::resource('/admin/category', CategoryController::class);
+
+Route::post('/category-delete', [CategoryController::class, 'deleteCategory'])->name('deleteCategory');
+
+
+
+
