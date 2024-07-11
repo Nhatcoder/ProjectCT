@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
+use App\Http\Requests\CreateCategory;
+use App\Http\Requests\UpdateCategory;
 
 class CategoryController extends Controller
 {
@@ -14,34 +16,21 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
+        $category = Category::select('name', 'id', 'created_at')->orderBy('id', 'desc')->get();
         return view('admin.category.index', compact('category'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('admin.category.add');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        $data = $request->validate(
-            [
-                'name' => 'required',
-            ],
-            [
-                'name.required' => 'Tên danh mục không được để trống',
-            ]
-        );
 
+    public function storeCategory(CreateCategory $request)
+    {
         $category = new Category();
-        $category->name = $data['name'];
+        $category->name = $request->name;
         $category->created_at = Carbon::now('Asia/Ho_Chi_Minh');
         $category->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $category->save();
@@ -49,40 +38,32 @@ class CategoryController extends Controller
         return redirect()->route('category.index')->with('success', 'Thêm thành công');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
-        //
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
         $category = Category::find($id);
-        // dd($category);
+
+        if (!isset($category)) {
+            return redirect()->route('category.index')->with('error', 'Danh mục không tồn tại');
+        }
+
         return view('admin.category.edit', compact('category'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCategory $request, string $id)
     {
-        $data = $request->validate(
-            [
-                'name' => 'required',
-            ],
-            [
-                'name.required' => 'Tên danh mục không được để trống',
-            ]
-        );
-
         $category = Category::find($id);
-        $category->name = $data['name'];
+        $category->name = $request->name;
         $category->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $category->save();
         return redirect()->route('category.index')->with('success', 'Cập nhật thành công');
@@ -93,17 +74,20 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        // echo $id;
-        // if (Category::destroy($id)) {
-        //     return redirect()->route('category.index');
-        // }
+        
     }
 
     public function deleteCategory(Request $request)
     {
-        if (Category::find($request->id)) {
-            Category::find($request->id)->delete();
-            return redirect()->route('category.index');
+        $category = Category::find($request->id);
+        if (!isset($category)) {
+            return redirect()->route('category.index')->with('error', 'Danh mục không tồn tại');
+        } else {
+            $category->delete();
         }
+
+        return response()->json(['success' => 'Xóa thành công']);
+
+
     }
 }
