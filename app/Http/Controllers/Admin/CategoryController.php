@@ -28,29 +28,7 @@ class CategoryController extends Controller
         return view('admin.category.add');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    // public function store(Request $request)
-    // {
-    //     $data = $request->validate(
-    //         [
-    //             'name' => 'required',
-    //         ],
-    //         [
-    //             'name.required' => 'Tên danh mục không được để trống',
-    //         ]
-    //     );
-
-    //     $category = new Category();
-    //     $category->name = $data['name'];
-    //     $category->created_at = Carbon::now('Asia/Ho_Chi_Minh');
-    //     $category->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
-    //     $category->save();
-
-    //     return redirect()->route('category.index')->with('success', 'Thêm thành công');
-    // }
-
+   
     public function storeCategory(CreateCategory $request)
     {
         $data = $request->validate(
@@ -76,7 +54,7 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -120,10 +98,7 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        // echo $id;
-        // if (Category::destroy($id)) {
-        //     return redirect()->route('category.index');
-        // }
+      
     }
 
     public function deleteCategory(Request $request)
