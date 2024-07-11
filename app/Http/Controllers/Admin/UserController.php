@@ -36,7 +36,6 @@ class UserController extends Controller
 
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
-
             $avatarName = time() . '_' . $user->id . '.' . $avatar->getClientOriginalExtension();
             $path = $avatar->storeAs('public/avatars', $avatarName);
 
