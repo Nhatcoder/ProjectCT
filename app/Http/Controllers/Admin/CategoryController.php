@@ -29,10 +29,8 @@ class CategoryController extends Controller
 
     public function storeCategory(CreateCategory $request)
     {
-        $data = $request->validated();
-
         $category = new Category();
-        $category->name = $data['name'];
+        $category->name = $request->name;
         $category->created_at = Carbon::now('Asia/Ho_Chi_Minh');
         $category->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $category->save();
@@ -64,10 +62,8 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategory $request, string $id)
     {
-        $data = $request->validated();
-
         $category = Category::find($id);
-        $category->name = $data['name'];
+        $category->name = $request->name;
         $category->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $category->save();
         return redirect()->route('category.index')->with('success', 'Cập nhật thành công');
@@ -78,7 +74,7 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-
+        
     }
 
     public function deleteCategory(Request $request)
@@ -91,5 +87,7 @@ class CategoryController extends Controller
         }
 
         return response()->json(['success' => 'Xóa thành công']);
+
+
     }
 }
