@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
+use App\Http\Requests\CreateCategory;
+use App\Http\Requests\UpdateCategory;
 
 class CategoryController extends Controller
 {
@@ -29,27 +31,27 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $data = $request->validate(
-            [
-                'name' => 'required',
-            ],
-            [
-                'name.required' => 'Tên danh mục không được để trống',
-            ]
-        );
+    // public function store(Request $request)
+    // {
+    //     $data = $request->validate(
+    //         [
+    //             'name' => 'required',
+    //         ],
+    //         [
+    //             'name.required' => 'Tên danh mục không được để trống',
+    //         ]
+    //     );
 
-        $category = new Category();
-        $category->name = $data['name'];
-        $category->created_at = Carbon::now('Asia/Ho_Chi_Minh');
-        $category->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
-        $category->save();
+    //     $category = new Category();
+    //     $category->name = $data['name'];
+    //     $category->created_at = Carbon::now('Asia/Ho_Chi_Minh');
+    //     $category->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
+    //     $category->save();
 
-        return redirect()->route('category.index')->with('success', 'Thêm thành công');
-    }
+    //     return redirect()->route('category.index')->with('success', 'Thêm thành công');
+    // }
 
-    public function storeCategory(Request $request)
+    public function storeCategory(CreateCategory $request)
     {
         $data = $request->validate(
             [
@@ -95,7 +97,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCategory $request, string $id)
     {
         $request->validate(
             [
@@ -107,8 +109,7 @@ class CategoryController extends Controller
         );
 
         $category = Category::find($id);
-        // $category->name = $data['name'];
-        $category->name = $request->name; // Sử dụng request để nhận đc data được gửi lên
+        $category->name = $request->name;
         $category->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $category->save();
         return redirect()->route('category.index')->with('success', 'Cập nhật thành công');
@@ -127,11 +128,10 @@ class CategoryController extends Controller
 
     public function deleteCategory(Request $request)
     {
-        if (Category::find($request->id)) {
-            Category::find($request->id)->delete();
-            return redirect()->route('category.index');
+        $category = Category::find($request->id);
+        if ($category) {
+            $category->delete();
+            return response()->json(['success' => 'Xóa thành công']);
         }
-
-        // If là khi có id thì find và kiểm tra xem có dữ liệu thì thực hiên xoá
     }
 }
