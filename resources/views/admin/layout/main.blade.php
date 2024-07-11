@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('title')</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('admin') }} /vendors/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="{{ asset('admin') }} /vendors/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="{{ asset('admin') }} /vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="{{ asset('admin') }}/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="{{ asset('admin') }}/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="{{ asset('admin') }}/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="{{ asset('admin') }} /vendors/daterangepicker/daterangepicker.css">
-    <link rel="stylesheet" href="{{ asset('admin') }} /vendors/chartist/chartist.min.css">
+    <link rel="stylesheet" href="{{ asset('admin') }}/vendors/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="{{ asset('admin') }}/vendors/chartist/chartist.min.css">
 
     <link rel="stylesheet" href="{{ asset('admin') }}/css/style.css">
     <!-- End layout styles -->
@@ -27,10 +27,10 @@
         <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="navbar-brand-wrapper d-flex align-items-center">
                 <a class="navbar-brand brand-logo" href="index.html">
-                    <img src="{{ asset('admin/') }}images/logo.svg" alt="logo" class="logo-dark" />
+                    <img src="{{ asset('admin') }}/images/logo.svg" alt="logo" class="logo-dark" />
                 </a>
                 <a class="navbar-brand brand-logo-mini" href="index.html"><img
-                        src="{{ asset('admin/') }}images/logo-mini.svg" alt="logo" /></a>
+                        src="{{ asset('admin') }}/images/logo-mini.svg" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
                 <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Welcome stallar dashboard!</h5>
@@ -56,7 +56,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="{{ asset('admin/') }}images/faces/face10.jpg" alt="image"
+                                    <img src="{{ asset('admin') }}/images/faces/face10.jpg" alt="image"
                                         class="img-sm profile-pic">
                                 </div>
                                 <div class="preview-item-content flex-grow py-2">
@@ -66,7 +66,7 @@
                             </a>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="{{ asset('admin/') }}images/faces/face12.jpg" alt="image"
+                                    <img src="{{ asset('admin') }}/images/faces/face12.jpg" alt="image"
                                         class="img-sm profile-pic">
                                 </div>
                                 <div class="preview-item-content flex-grow py-2">
@@ -76,7 +76,7 @@
                             </a>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="{{ asset('admin/') }}images/faces/face1.jpg" alt="image"
+                                    <img src="{{ asset('admin') }}/images/faces/face1.jpg" alt="image"
                                         class="img-sm profile-pic">
                                 </div>
                                 <div class="preview-item-content flex-grow py-2">
@@ -109,11 +109,11 @@
                     <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
                         <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown"
                             aria-expanded="false">
-                            <img class="img-xs rounded-circle ml-2" src="{{ asset('admin/') }}images/faces/face8.jpg"
+                            <img class="img-xs rounded-circle ml-2" src="{{ asset('admin') }}/images/faces/face8.jpg"
                                 alt="Profile image"> <span class="font-weight-normal"> Henry Klein </span></a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                             <div class="dropdown-header text-center">
-                                <img class="img-md rounded-circle" src="{{ asset('admin/') }}images/faces/face8.jpg"
+                                <img class="img-md rounded-circle" src="{{ asset('admin') }}/images/faces/face8.jpg"
                                     alt="Profile image">
                                 <p class="mb-1 mt-3">Allen Moreno</p>
                                 <p class="font-weight-light text-muted mb-0">allenmoreno@gmail.com</p>
@@ -161,24 +161,23 @@
     @yield('script')
     
     <!-- plugins:js -->
-    <script src="{{ asset('admin/') }} vendors/js/vendor.bundle.base.js"></script>
+    {{-- <script src="{{ asset('admin') }}/vendors/js/vendor.bundle.base.js"></script> --}}
 
     <script src="{{ asset('admin') }}/js/deleteCategory.js"></script>
     
 
-    <!-- endinject -->
     <!-- Plugin js for this page -->
-    {{-- <script src="{{ asset('admin/') }} vendors/chart.js/Chart.min.js"></script>
-    <script src="{{ asset('admin/') }} vendors/moment/moment.min.js"></script>
-    <script src="{{ asset('admin/') }} vendors/daterangepicker/daterangepicker.js"></script>
-    <script src="{{ asset('admin/') }} vendors/chartist/chartist.min.js"></script>
-    <!-- End plugin js for this page -->
+    {{-- <script src="{{ asset('admin') }}/vendors/chart.js/Chart.min.js"></script> --}}
+    <script src="{{ asset('admin') }}/vendors/moment/moment.min.js"></script>
+    <script src="{{ asset('admin') }}/vendors/daterangepicker/daterangepicker.js"></script>
+    {{-- <script src="{{ asset('admin') }}/vendors/chartist/chartist.min.js"></script> --}}
+
     <!-- inject:js -->
-    <script src="{{ asset('admin/') }}js/off-canvas.js"></script>
-    <script src="{{ asset('admin/') }}js/misc.js"></script>
+    <script src="{{ asset('admin') }}/js/off-canvas.js"></script>
+    <script src="{{ asset('admin') }}/js/misc.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script src="{{ asset('admin/') }}/js/dashboard.js"></script> --}}
+    <script src="{{ asset('admin') }}/js/dashboard.js"></script>
     <!-- End custom js for this page -->
 </body>
 

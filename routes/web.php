@@ -22,9 +22,9 @@ Route::get('/', function () {
 });
 
 
-Route::get('/admin/index', [IndexController::class, 'index']);
+Route::get('/admin/index', [IndexController::class, 'index'])->name('admin.index');
 
-Route::get('/admin/user', [UserController::class, 'listUser'])->name('admin.user.list');
+Route::get('/admin/user', [UserController::class, 'listUser'])->name('admin.user');
 Route::get('/admin/user-edit/{id}', [UserController::class, 'editUser'])->name('admin.user.edit');
 Route::put('/admin/user-update/{id}', [UserController::class, 'updateUser'])->name('admin.user.update');
 
