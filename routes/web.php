@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CategoryProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +24,14 @@ Route::get('/', function () {
 Route::get('/admin/index', [IndexController::class, 'index']);
 
 Route::resource('/admin/category', CategoryController::class);
-
 Route::post('/category-delete', [CategoryController::class, 'deleteCategory'])->name('deleteCategory');
+
+
+Route::post('/category-delete', [CategoryProductController::class, 'deleteCategoryProduct'])->name('deleteCategoryProduct');
+Route::resource('/admin/category-product', CategoryProductController::class);
+
+
+
 
 
 
