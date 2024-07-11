@@ -32,7 +32,12 @@
                  <span class="menu-title">Danh mục</span>
                  <i class="icon-layers menu-icon"></i>
              </a>
-             
+         </li>
+         <li class="nav-item">
+             <a class="nav-link" data-toggle="collapse" href="{{ route('category-product.index') }}" aria-expanded="false" aria-controls="ui-basic">
+                 <span class="menu-title">Danh mục sản phẩm</span>
+                 <i class="icon-layers menu-icon"></i>
+             </a>
          </li>
         
          

@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    protected $table = "product_categories";
-
+    protected $table = "category";
     
+
 
 
 
