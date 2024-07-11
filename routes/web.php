@@ -25,8 +25,8 @@ Route::get('/admin/index', [IndexController::class, 'index']);
 
 Route::resource('/admin/category', CategoryController::class);
 
-Route::post('/category-store', [CategoryController::class, 'storeCategory'])->name('storeCategory');
-Route::post('/category-delete', [CategoryController::class, 'deleteCategory'])->name('deleteCategory');
+Route::post('/category-store', [CategoryController::class, 'storeCategory'])->name('admin.category.store');
+Route::post('/category-delete', [CategoryController::class, 'deleteCategory'])->name('admin.category.delete');
 
 
 Route::post('/category-product-delete', [CategoryProductController::class, 'deleteCategoryProduct'])->name('deleteCategoryProduct');

@@ -20,25 +20,16 @@ class CategoryController extends Controller
         return view('admin.category.index', compact('category'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('admin.category.add');
     }
 
-   
+
     public function storeCategory(CreateCategory $request)
     {
-        $data = $request->validate(
-            [
-                'name' => 'required',
-            ],
-            [
-                'name.required' => 'Tên danh mục không được để trống',
-            ]
-        );
+        $data = $request->validated();
 
         $category = new Category();
         $category->name = $data['name'];
@@ -49,25 +40,21 @@ class CategoryController extends Controller
         return redirect()->route('category.index')->with('success', 'Thêm thành công');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
-        
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
-        if (Category::find($id) == null) {
+        $category = Category::find($id);
+
+        if (!isset($category)) {
             return redirect()->route('category.index')->with('error', 'Danh mục không tồn tại');
         }
 
-        // Nếu id khong ton tai thì chuyển về trang index
-        $category = Category::find($id);
         return view('admin.category.edit', compact('category'));
 
     }
@@ -77,17 +64,10 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategory $request, string $id)
     {
-        $request->validate(
-            [
-                'name' => 'required',
-            ],
-            [
-                'name.required' => 'Tên danh mục không được để trống',
-            ]
-        );
+        $data = $request->validated();
 
         $category = Category::find($id);
-        $category->name = $request->name;
+        $category->name = $data['name'];
         $category->updated_at = Carbon::now('Asia/Ho_Chi_Minh');
         $category->save();
         return redirect()->route('category.index')->with('success', 'Cập nhật thành công');
@@ -98,15 +78,18 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-      
+
     }
 
     public function deleteCategory(Request $request)
     {
         $category = Category::find($request->id);
-        if ($category) {
+        if (!isset($category)) {
+            return redirect()->route('category.index')->with('error', 'Danh mục không tồn tại');
+        } else {
             $category->delete();
-            return response()->json(['success' => 'Xóa thành công']);
         }
+
+        return response()->json(['success' => 'Xóa thành công']);
     }
 }

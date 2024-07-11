@@ -14,7 +14,7 @@
                             <div class="form-group">
                                 <label for="name">Tên</label>
                                 <input type="text" class="form-control" name="name" id="name"
-                                    placeholder="Điền vào trỗ trống ..." value="{{ $category->name }}">
+                                    placeholder="Điền vào trỗ trống ..." value="{{ old('name', $category->name) }}">
                                 @error('name')
                                     <b class="text-danger">{{ $message }}</b>
                                 @enderror

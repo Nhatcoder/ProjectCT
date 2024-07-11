@@ -22,7 +22,16 @@ class CreateCategory extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => 'required|max:255|min:2',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Tên danh mục không được để trống',
+            'name.max' => 'Tên danh mục tối đa 255 ký tự',
+            'name.min' => 'Tên danh mục tối thiểu 2 ký tự',
         ];
     }
 }

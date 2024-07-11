@@ -7,11 +7,10 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Thêm danh mục</h4>
-                        {{-- <form action="{{ route('category.store') }}" class="forms-sample needs-validation" method="post"
-                            novalidate> --}}
-                        <form action="{{ route('storeCategory') }}" class="forms-sample needs-validation" method="post"
+                        <form action="{{ route('admin.category.store') }}" class="forms-sample needs-validation" method="post"
                             novalidate>
                             @csrf
+                            
                             <div class="form-group">
                                 <label for="name">Tên</label>
                                 <input type="text" class="form-control" name="name" id="name" required

@@ -5,32 +5,17 @@
     <div class="content-wrapper">
         <div class="row purchace-popup">
             <div class="col-12 stretch-card grid-margin">
-
-                @if (session('success'))
-                    <script>
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: "top-end",
-                            showConfirmButton: false,
-                            timer: 3000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                                toast.onmouseenter = Swal.stopTimer;
-                                toast.onmouseleave = Swal.resumeTimer;
-                            },
-                            customClass: {
-                                popup: 'toast-css'
-                            }
-                        });
-                        Toast.fire({
-                            icon: "success",
-                            title: "{{ session('success') }}"
-                        });
-                    </script>
-                @endif
-
                 <div class="card">
                     <div class="card-body">
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @elseif (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <h4 class="card-title">Danh mục</h4>
                         <a href="{{ route('category.create') }}" class="btn btn-success">Thêm mới</a>
                         <div class="aligner-wrapper">
@@ -48,12 +33,6 @@
                                         <td class="d-flex">
                                             <a href="{{ route('category.edit', $item->id) }}"
                                                 class="btn btn-success">Sửa</a>
-                                            {{-- <form action="{{ route('category.destroy', $item->id) }}" method="post">
-                                                @method('POST')
-                                                <button class="btn btn-danger btn_delete__category"
-                                                    data-id="{{ $item->id }}"">Xóa</button>
-                                            </form> --}}
-
                                             <button class="btn btn-danger btn_delete__category"
                                                 data-id="{{ $item->id }}"">Xóa</button>
                                         </td>
@@ -97,7 +76,7 @@
                     if (result.isConfirmed) {
 
                         $.ajax({
-                            url: "{{ route('deleteCategory') }}",
+                            url: "{{ route('admin.category.delete') }}",
                             type: 'POST',
                             data: {
                                 id: id,
@@ -110,7 +89,8 @@
                                     title: 'Thành công !',
                                     text: 'Đã xóa danh mục thành công',
                                     icon: 'success',
-                                    confirmButtonText: 'Cool'
+                                    confirmButtonText: 'ok',
+
                                 })
                             }
                         })
@@ -124,9 +104,8 @@
                             icon: "error"
                         });
                     }
+
                 });
-
-
             })
         })
     </script>
