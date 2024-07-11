@@ -1,6 +1,6 @@
 Các chạy dự án
 
-B1: git clone 
+B1: git clone https://github.com/Nhatcoder/ProjectCT.git
 B2: composer install
 B3: composer update
 B4: Đổi env từ .env.example thành .env 
