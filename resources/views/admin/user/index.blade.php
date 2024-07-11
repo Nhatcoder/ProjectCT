@@ -38,9 +38,9 @@
                                                 $is_valid_url = filter_var($item->avatar, FILTER_VALIDATE_URL);
                                             @endphp
                                             @if ($is_valid_url)
-                                                <img width="50px" src="{{ $item->avatar }}" alt="">
+                                                <img width="150px" src="{{ $item->avatar }}" alt="">
                                             @else
-                                                <img width="50px" src="{{ asset('storage/avatars/' . basename($item->avatar)) }}"
+                                                <img width="150px" src="{{ asset('storage/avatars/' . basename($item->avatar)) }}"
                                                     alt="User Avatar">
                                             @endif
                                         </td>

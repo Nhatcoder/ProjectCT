@@ -24,7 +24,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary mr-2">Cập nhật</button>
-                            <a href="{{ route('admin.user.list') }}" class="btn btn-light">Quay lại</a>
+                            <a href="{{ route('admin.user') }}" class="btn btn-light">Quay lại</a>
                         </form>
                     </div>
                 </div>

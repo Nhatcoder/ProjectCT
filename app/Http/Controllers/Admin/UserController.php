@@ -21,7 +21,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         if (!isset($user)) {
-            return redirect()->route('admin.user.list')->with('error', 'Không tìm thấy người dùng');
+            return redirect()->route('admin.user')->with('error', 'Không tìm thấy người dùng');
         }
         return view('admin.user.edit', compact('user'));
     }
@@ -30,7 +30,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         if (!isset($user)) {
-            return redirect()->route('admin.user.list')->with('error', 'Không tìm thấy người dùng');
+            return redirect()->route('admin.user')->with('error', 'Không tìm thấy người dùng');
         }
 
 
@@ -45,6 +45,6 @@ class UserController extends Controller
 
 
         $user->save();
-        return redirect()->route('admin.user.list')->with('success', 'Cập nhật người dùng thành công');
+        return redirect()->route('admin.user')->with('success', 'Cập nhật người dùng thành công');
     }
 }
