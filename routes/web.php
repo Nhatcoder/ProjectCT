@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CategoryProductController;
@@ -23,10 +24,14 @@ Route::get('/', function () {
 
 Route::get('/admin/index', [IndexController::class, 'index']);
 
-Route::resource('/admin/category', CategoryController::class);
+Route::get('/admin/user', [UserController::class, 'listUser'])->name('admin.user.list');
+Route::get('/admin/user-edit/{id}', [UserController::class, 'editUser'])->name('admin.user.edit');
+Route::put('/admin/user-update/{id}', [UserController::class, 'updateUser'])->name('admin.user.update');
 
+Route::resource('/admin/category', CategoryController::class);
 Route::post('/category-store', [CategoryController::class, 'storeCategory'])->name('admin.category.store');
 Route::post('/category-delete', [CategoryController::class, 'deleteCategory'])->name('admin.category.delete');
+
 
 
 Route::post('/category-product-delete', [CategoryProductController::class, 'deleteCategoryProduct'])->name('deleteCategoryProduct');
