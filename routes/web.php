@@ -17,12 +17,10 @@ use App\Http\Controllers\Admin\CategoryProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
-Route::get('/admin/index', [IndexController::class, 'index'])->name('admin.index');
+// Route::get('/admin/index', [IndexController::class, 'index'])->name('admin.index');
+Route::get('/', [IndexController::class, 'index'])->name('admin.index');
 
 Route::get('/admin/user', [UserController::class, 'listUser'])->name('admin.user');
 Route::get('/admin/user-edit/{id}', [UserController::class, 'editUser'])->name('admin.user.edit');
