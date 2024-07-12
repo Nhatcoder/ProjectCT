@@ -20,9 +20,16 @@
                                 @error('avatar')
                                     <b class="text-danger">{{ $message }}</b>
                                 @enderror
-                                <img width="150px" src="{{ asset('storage/avatars/' . basename($user->avatar)) }}"
-                                    alt="User Avatar">
                             </div>
+                                @php
+                                    $is_valid_url = filter_var($user->avatar, FILTER_VALIDATE_URL);
+                                @endphp
+                                @if ($is_valid_url)
+                                    <img width="150px" src="{{ $user->avatar }}" alt="">
+                                @else
+                                    <img width="150px" src="{{ asset('storage/avatars/' . basename($user->avatar)) }}"
+                                        alt="User Avatar">
+                                @endif
 
                             <button type="submit" class="btn btn-primary mr-2">Cập nhật</button>
                             <a href="{{ route('admin.user') }}" class="btn btn-light">Quay lại</a>
