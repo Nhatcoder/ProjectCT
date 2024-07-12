@@ -23,7 +23,6 @@ return new class extends Migration {
             $table->string('slug')->unique();
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('product_categories')->onDelete('cascade');
         });
     }
 

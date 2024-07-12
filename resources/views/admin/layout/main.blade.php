@@ -6,6 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('title')</title>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('admin') }}/vendors/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="{{ asset('admin') }}/vendors/flag-icon-css/css/flag-icon.min.css">
@@ -159,12 +162,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js') }}"></script>
     @yield('script')
-    
+
     <!-- plugins:js -->
     {{-- <script src="{{ asset('admin') }}/vendors/js/vendor.bundle.base.js"></script> --}}
 
     <script src="{{ asset('admin') }}/js/deleteCategory.js"></script>
-    
+
 
     <!-- Plugin js for this page -->
     {{-- <script src="{{ asset('admin') }}/vendors/chart.js/Chart.min.js"></script> --}}
