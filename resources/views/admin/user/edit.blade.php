@@ -20,7 +20,8 @@
                                 @error('avatar')
                                     <b class="text-danger">{{ $message }}</b>
                                 @enderror
-                                <img width="150px" src="{{ $user->avatar }}" alt="avatar">
+                                <img width="150px" src="{{ asset('storage/avatars/' . basename($user->avatar)) }}"
+                                    alt="User Avatar">
                             </div>
 
                             <button type="submit" class="btn btn-primary mr-2">Cập nhật</button>

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserUpdate;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -26,19 +28,20 @@ class UserController extends Controller
         return view('admin.user.edit', compact('user'));
     }
 
-    public function updateUser(Request $request, $id)
+    public function updateUser(UserUpdate $request, $id)
     {
         $user = User::find($id);
         if (!isset($user)) {
             return redirect()->route('admin.user')->with('error', 'Không tìm thấy người dùng');
         }
 
-
         if ($request->hasFile('avatar')) {
+            if ($user->avatar && Storage::exists($user->avatar)) {
+                Storage::delete($user->avatar);
+            }
             $avatar = $request->file('avatar');
-            $avatarName = time() . '_' . $user->id . '.' . $avatar->getClientOriginalExtension();
+            $avatarName = "avt_".time() . '_' . $user->id . '.' . $avatar->getClientOriginalExtension();
             $path = $avatar->storeAs('public/avatars', $avatarName);
-
             $user->avatar = $path;
         }
 
