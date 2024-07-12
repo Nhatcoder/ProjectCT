@@ -45,8 +45,8 @@ class UserController extends Controller
             $user->avatar = $path;
         }
 
-
         $user->save();
         return redirect()->route('admin.user')->with('success', 'Cập nhật người dùng thành công');
+        
     }
 }
