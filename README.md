@@ -7,5 +7,6 @@
 5. Tạo key cho dự án bằng lệnh `php artisan key:generate`
 6. Tạo bảng trong database bằng lệnh `php artisan migrate`
 7. Thêm dữ liệu mẫu vào database bằng lệnh `php artisan db:seed`
-8. Chạy dự án bằng lệnh `php artisan serve`
+8. Tạo symbolic link `php artisan storage:link`
+9. Chạy dự án bằng lệnh `php artisan serve`
 
